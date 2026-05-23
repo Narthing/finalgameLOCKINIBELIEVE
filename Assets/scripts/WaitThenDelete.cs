@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class WaitThenDelete : MonoBehaviour
 {
+    public Collider thiscollider;
+
+    private void Start()
+    {
+        thiscollider = GetComponent<Collider>();
+    }
     private void Awake()
     {
         StartCoroutine(waitthendelete());
+        StartCoroutine(collideroneframe());
     }
     IEnumerator waitthendelete()
     {
@@ -20,5 +27,11 @@ public class WaitThenDelete : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+    IEnumerator collideroneframe()
+    {
+        
+        yield return new WaitForEndOfFrame();
+        thiscollider.enabled = false;
     }
 }

@@ -7,6 +7,7 @@ public class Explosions : MonoBehaviour
 {
     public Rigidbody rb;
     public bool ishoming = false;
+    public bool SpamLaunched = false;
 
     public Transform Target;
 
@@ -24,40 +25,44 @@ public class Explosions : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        /*
-        if (!collision.gameObject.CompareTag("Missile") || !collision.gameObject.CompareTag("Homing"))
+        
+        if (!collision.gameObject.CompareTag("Missile") || !collision.gameObject.CompareTag("Homing") || !collision.gameObject.CompareTag("Player"))
         {
-            Instantiate(explosionprefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            Destroy(gameObject);
+            if (!ishoming)
+            {
+                Instantiate(explosionprefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                Destroy(gameObject);
+            }
+            else if (collision.gameObject.CompareTag("Enemy"))
+            {
+                Instantiate(explosionprefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
-        */
-
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Instantiate(explosionprefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            Destroy(gameObject);
-        }
+        
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.AddForce(transform.forward * 11, ForceMode.VelocityChange);
-        if (gameObject.CompareTag("Homing") && starthoming) //FIX HOMING to make it not indefinitely spin out also a smoke trail
+        rb.AddForce(transform.forward * 44, ForceMode.VelocityChange); //make it go
+        if (gameObject.CompareTag("Homing") && starthoming) //note to self: give rocket a smoke trail
         {
             transform.LookAt(Target.position);
         }
-        if(rb.velocity.magnitude > 200)
+        if(rb.velocity.magnitude > 80) //cap velocity
         {
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, 200);
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, 80);
         }
+        //Debug.Log(rb.velocity.magnitude);
     }
 
     IEnumerator waitthendelete()
     {
         if (gameObject.CompareTag("Homing"))
         {
-            yield return new WaitForSeconds(15f);
+            yield return new WaitForSeconds(60f);
         }
         else
         {
@@ -68,9 +73,17 @@ public class Explosions : MonoBehaviour
     }
     IEnumerator Starthoming()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         starthoming = true;
-        yield return new WaitForSeconds(3.4f);
-        rb.AddForce(transform.forward * 11, ForceMode.VelocityChange);
+        while (true) //stop rockets from getting stuck circling something
+        {
+            Vector3 velocity = rb.velocity;
+            velocity -= transform.right * Vector3.Dot(velocity, transform.right); //remove all velocity going to the rockets right
+            velocity -= -transform.right * Vector3.Dot(velocity, -transform.right); //same but for left
+            velocity += transform.forward * 200;
+
+            yield return new WaitForSeconds(3f);
+            rb.velocity = velocity;
+        }
     }
 }

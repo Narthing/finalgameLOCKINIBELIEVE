@@ -16,9 +16,17 @@ public class realexplosionscript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("enemy"))
+        other.attachedRigidbody.AddExplosionForce(14, transform.position, 4.9f, 1, ForceMode.VelocityChange);
+        if (other.gameObject.CompareTag("Enemy"))
         {
 
         }
+    }
+    public float blastradius = 4f;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, blastradius);
+
     }
 }
