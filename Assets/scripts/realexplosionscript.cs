@@ -16,7 +16,7 @@ public class realexplosionscript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.attachedRigidbody.AddExplosionForce(14, transform.position, 4.9f, 1, ForceMode.VelocityChange);
+        other.attachedRigidbody.AddExplosionForce(14.2f, transform.position, 4.9f, 1.1f, ForceMode.VelocityChange);
         if (other.gameObject.CompareTag("Enemy"))
         {
 

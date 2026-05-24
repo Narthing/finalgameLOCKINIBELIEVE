@@ -26,7 +26,7 @@ public class Explosions : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-        if (!collision.gameObject.CompareTag("Missile") || !collision.gameObject.CompareTag("Homing") || !collision.gameObject.CompareTag("Player"))
+        if (!collision.gameObject.CompareTag("Missile") && !collision.gameObject.CompareTag("Homing") && !collision.gameObject.CompareTag("Player"))
         {
             if (!ishoming)
             {
@@ -47,7 +47,7 @@ public class Explosions : MonoBehaviour
     void FixedUpdate()
     {
         rb.AddForce(transform.forward * 44, ForceMode.VelocityChange); //make it go
-        if (gameObject.CompareTag("Homing") && starthoming) //note to self: give rocket a smoke trail
+        if (gameObject.CompareTag("Homing") && starthoming) 
         {
             transform.LookAt(Target.position);
         }

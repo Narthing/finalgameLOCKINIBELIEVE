@@ -13,11 +13,17 @@ public class shooting : MonoBehaviour
 
     public GameObject missileprefab;
     public GameObject homingmissileprefab;
+    public GameObject EnemyPrefab;
+    public GameObject ShootParticlePrefab;
 
+    public Transform ParticlePoint;
     public Transform shootpoint;
 
     public bool currentlyhoming = false;
     public bool MagDumping = false;
+
+    public Vector3 pointrot;
+    public Vector3 shootparticlerot;
 
     // Start is called before the first frame update
     void Start()
@@ -28,24 +34,24 @@ public class shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 pointrot = new Vector3(maincamera.eulerAngles.x, Player.eulerAngles.y, 0f);
+        pointrot = new Vector3(maincamera.eulerAngles.x, Player.eulerAngles.y, 0f);
         shootpoint.rotation = Quaternion.Euler(pointrot);
 
         if (Input.GetMouseButtonDown(0) && !currentlyhoming && !MagDumping)
         {
-            Instantiate(missileprefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
+            Fire(false, false);
         }
-        else if(Input.GetMouseButtonDown(0) && currentlyhoming && !MagDumping)
+        else if (Input.GetMouseButtonDown(0) && currentlyhoming && !MagDumping)
         {
-            Instantiate(homingmissileprefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
+            Fire(true, false);
         }
         else if (Input.GetMouseButton(0) && !currentlyhoming && MagDumping)
         {
-            Instantiate(missileprefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
+            Fire(false, true);
         }
         else if (Input.GetMouseButton(0) && currentlyhoming && MagDumping)
         {
-            Instantiate(homingmissileprefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
+            Fire(true, true);
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -59,7 +65,11 @@ public class shooting : MonoBehaviour
         {
             StartCoroutine(MagDump());
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Instantiate(EnemyPrefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
+        }
+        if (Input.GetKeyDown(KeyCode.R)) //reset scene
         {
             Scene currentscenescene = SceneManager.GetActiveScene();
             string currentscene = currentscenescene.ToString();
@@ -67,9 +77,20 @@ public class shooting : MonoBehaviour
         }
     }
 
-    void Fire(bool homing)
+    void Fire(bool homing, bool magdumping) //helper method for instantiating missiles
     {
-
+        shootparticlerot = new Vector3(ParticlePoint.eulerAngles.x, ParticlePoint.eulerAngles.y, 0f); //get rotation of particle point
+        ParticlePoint.rotation = Quaternion.Euler(shootparticlerot); //put that onto the particle point
+        Instantiate(ShootParticlePrefab, new Vector3(ParticlePoint.position.x, ParticlePoint.position.y, ParticlePoint.position.z), Quaternion.Euler(pointrot), parent: ParticlePoint);
+        if (!homing)
+        {
+            Instantiate(missileprefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
+        }
+        if (homing)
+        {
+            Instantiate(homingmissileprefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
+        }
+        
     }
 
     IEnumerator MagDump()
