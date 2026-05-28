@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - NormalExplosion
   - RpgParticle
+  - Goldparticle
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: particle
+    uniqueID: 3130721983
     locked: 0

@@ -24,6 +24,7 @@ public class shooting : MonoBehaviour
 
     public Vector3 pointrot;
     public Vector3 shootparticlerot;
+    public Vector3 goldparticlerot;
 
     // Start is called before the first frame update
     void Start()
@@ -93,10 +94,34 @@ public class shooting : MonoBehaviour
         
     }
 
+    public SkinnedMeshRenderer rpgpart1;
+    public SkinnedMeshRenderer rpgpart2;
+    public SkinnedMeshRenderer rpgpart3;
+    public Material Sheen;
+
+    public Transform goldrpgspawnpoint;
+    public GameObject goldrpgparticleprefab;
+
+    public Transform RPG;
+
     IEnumerator MagDump()
     {
-        MagDumping = true;
+        Material ogtexture1 = rpgpart1.material; //get original textures for normal rpg
+        Material ogtexture2 = rpgpart2.material;
+        Material ogtexture3 = rpgpart3.material;
+
+        MagDumping = true; 
+
+        rpgpart1.material = Sheen; 
+        rpgpart2.material = Sheen; //make rpg gold
+        rpgpart3.material = Sheen;
+
+        Instantiate(goldrpgparticleprefab, new Vector3(goldrpgspawnpoint.position.x, goldrpgspawnpoint.position.y, goldrpgspawnpoint.position.z), Quaternion.Euler(RPG.rotation.x, RPG.rotation.y, RPG.rotation.z), parent: RPG); //spawn in the particle
         yield return new WaitForSeconds(4f);
+
+        rpgpart1.material = ogtexture1;
+        rpgpart2.material = ogtexture2;
+        rpgpart3.material = ogtexture3;
         MagDumping = false;
     }
 }

@@ -14,7 +14,7 @@ public class WaitThenDelete : MonoBehaviour
 
         StartCoroutine(waitthendelete());
 
-        if (gameObject.CompareTag("NormalExplosion")) //if its an explosion then have its collider only run for one frame
+        if (gameObject.CompareTag("NormalExplosion")) //if its an explosion then have its collider only run for a small moment
         {StartCoroutine(collideroneframe());}
     }
     IEnumerator waitthendelete()
@@ -27,8 +27,12 @@ public class WaitThenDelete : MonoBehaviour
         {
             yield return new WaitForSeconds(0.2f);
         }
+        else if (gameObject.CompareTag("Goldparticle"))
+        {
+            yield return new WaitForSeconds(4);
+        }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
     }
     IEnumerator collideroneframe()
     {
