@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Transform player;
+
+    public Rigidbody rb;
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()                       //add baldi enemy to game
     {
-        
+        transform.LookAt(player);
+        rb.AddForce(transform.forward * 0.4f, ForceMode.VelocityChange);
     }
 }

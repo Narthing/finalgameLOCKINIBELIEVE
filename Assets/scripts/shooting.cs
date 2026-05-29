@@ -120,6 +120,8 @@ public class shooting : MonoBehaviour
         
     }
 
+    //to decide which enemy to home on, draw a ray and if it hits then home onto that enemy, if no enemy then draw a cone and pick the closest one to the player, if still no enemy then pick a random existing enemy
+
     public SkinnedMeshRenderer rpgpart1;
     public SkinnedMeshRenderer rpgpart2;
     public SkinnedMeshRenderer rpgpart3;
@@ -127,8 +129,6 @@ public class shooting : MonoBehaviour
 
     public Transform goldrpgspawnpoint;
     public GameObject goldrpgparticleprefab;
-
-    
 
     IEnumerator MagDump()
     {

@@ -41,7 +41,7 @@ public class realexplosionscript : MonoBehaviour
 
             Playerrb.velocity = velocity;
 
-            other.attachedRigidbody.AddExplosionForce(blastkb, transform.position, blastradius, 1.1f, ForceMode.VelocityChange);
+            other.attachedRigidbody.AddExplosionForce(blastkb, transform.position, blastradius, 0f, ForceMode.VelocityChange);
             if (other.gameObject.CompareTag("Enemy"))
             {
 
