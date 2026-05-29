@@ -77,12 +77,10 @@ public class Explosions : MonoBehaviour
         starthoming = true;
         while (true) //stop rockets from getting stuck circling something
         {
-            Vector3 velocity = rb.velocity;
-            velocity -= transform.right * Vector3.Dot(velocity, transform.right); //remove all velocity going to the rockets right
-            velocity -= -transform.right * Vector3.Dot(velocity, -transform.right); //same but for left
-            velocity += transform.forward * 200;
-
             yield return new WaitForSeconds(3f);
+            Vector3 velocity = rb.velocity;
+            velocity -= transform.right * Vector3.Dot(velocity, transform.right); //remove all velocity going sideways
+            velocity += transform.forward * 200; //give 200 force forwards
             rb.velocity = velocity;
         }
     }

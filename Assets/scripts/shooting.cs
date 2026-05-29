@@ -15,9 +15,12 @@ public class shooting : MonoBehaviour
     public GameObject homingmissileprefab;
     public GameObject EnemyPrefab;
     public GameObject ShootParticlePrefab;
+    public GameObject ShootGoldParticlePrefab;
+    public GameObject BackfirePrefab;
 
     public Transform ParticlePoint;
     public Transform shootpoint;
+    public Transform BackfirePoint;
 
     public bool currentlyhoming = false;
     public bool MagDumping = false;
@@ -26,15 +29,21 @@ public class shooting : MonoBehaviour
     public Vector3 shootparticlerot;
     public Vector3 goldparticlerot;
 
+    public Transform RPG;
+    public GameObject BigSparkleGold;
+
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("Player").transform;
+        BigSparkleGold.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
         pointrot = new Vector3(maincamera.eulerAngles.x, Player.eulerAngles.y, 0f);
         shootpoint.rotation = Quaternion.Euler(pointrot);
 
@@ -66,6 +75,10 @@ public class shooting : MonoBehaviour
         {
             StartCoroutine(MagDump());
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Backfire();
+        }
         if (Input.GetKeyDown(KeyCode.G))
         {
             Instantiate(EnemyPrefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
@@ -78,11 +91,24 @@ public class shooting : MonoBehaviour
         }
     }
 
+    void Backfire()
+    {
+
+        Instantiate(BackfirePrefab, new Vector3(BackfirePoint.position.x, BackfirePoint.position.y, BackfirePoint.position.z), Quaternion.identity);
+    }
     void Fire(bool homing, bool magdumping) //helper method for instantiating missiles
     {
         shootparticlerot = new Vector3(ParticlePoint.eulerAngles.x, ParticlePoint.eulerAngles.y, 0f); //get rotation of particle point
         ParticlePoint.rotation = Quaternion.Euler(shootparticlerot); //put that onto the particle point
-        Instantiate(ShootParticlePrefab, new Vector3(ParticlePoint.position.x, ParticlePoint.position.y, ParticlePoint.position.z), Quaternion.Euler(pointrot), parent: ParticlePoint);
+        if (!magdumping)
+        {
+            Instantiate(ShootParticlePrefab, new Vector3(ParticlePoint.position.x, ParticlePoint.position.y, ParticlePoint.position.z), Quaternion.Euler(pointrot), parent: ParticlePoint);
+        }
+        if (magdumping)
+        {
+            Instantiate(ShootGoldParticlePrefab, new Vector3(ParticlePoint.position.x, ParticlePoint.position.y, ParticlePoint.position.z), Quaternion.Euler(pointrot), parent: ParticlePoint);
+        }
+        
         if (!homing)
         {
             Instantiate(missileprefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
@@ -102,7 +128,7 @@ public class shooting : MonoBehaviour
     public Transform goldrpgspawnpoint;
     public GameObject goldrpgparticleprefab;
 
-    public Transform RPG;
+    
 
     IEnumerator MagDump()
     {
@@ -116,9 +142,11 @@ public class shooting : MonoBehaviour
         rpgpart2.material = Sheen; //make rpg gold
         rpgpart3.material = Sheen;
 
+        BigSparkleGold.SetActive(true);
         Instantiate(goldrpgparticleprefab, new Vector3(goldrpgspawnpoint.position.x, goldrpgspawnpoint.position.y, goldrpgspawnpoint.position.z), Quaternion.Euler(RPG.rotation.x, RPG.rotation.y, RPG.rotation.z), parent: RPG); //spawn in the particle
         yield return new WaitForSeconds(4f);
 
+        BigSparkleGold.SetActive(false);
         rpgpart1.material = ogtexture1;
         rpgpart2.material = ogtexture2;
         rpgpart3.material = ogtexture3;

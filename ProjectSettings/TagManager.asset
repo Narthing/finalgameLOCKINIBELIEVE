@@ -10,6 +10,7 @@ TagManager:
   - NormalExplosion
   - RpgParticle
   - Goldparticle
+  - BackfireExplosion
   layers:
   - Default
   - TransparentFX
