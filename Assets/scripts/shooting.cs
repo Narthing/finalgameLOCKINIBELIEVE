@@ -17,6 +17,7 @@ public class shooting : MonoBehaviour
     public GameObject ShootParticlePrefab;
     public GameObject ShootGoldParticlePrefab;
     public GameObject BackfirePrefab;
+    public GameObject SpamMissilePrefab;
 
     public Transform ParticlePoint;
     public Transform shootpoint;
@@ -104,16 +105,20 @@ public class shooting : MonoBehaviour
         {
             Instantiate(ShootParticlePrefab, new Vector3(ParticlePoint.position.x, ParticlePoint.position.y, ParticlePoint.position.z), Quaternion.Euler(pointrot), parent: ParticlePoint);
         }
-        if (magdumping)
+        else if (magdumping)
         {
             Instantiate(ShootGoldParticlePrefab, new Vector3(ParticlePoint.position.x, ParticlePoint.position.y, ParticlePoint.position.z), Quaternion.Euler(pointrot), parent: ParticlePoint);
         }
         
-        if (!homing)
+        if (!homing && !MagDumping)
         {
             Instantiate(missileprefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
         }
-        if (homing)
+        else if(!homing && magdumping)
+        {
+            Instantiate(SpamMissilePrefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
+        }
+        else if (homing)
         {
             Instantiate(homingmissileprefab, new Vector3(shootpoint.position.x, shootpoint.position.y, shootpoint.position.z), Quaternion.Euler(pointrot));
         }
