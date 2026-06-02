@@ -4911,8 +4911,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4.8366566
-  m_Center: {x: 0.00046348572, y: 0.000009536743, z: 0}
+  m_Radius: 6.0649023
+  m_Center: {x: -0.034784317, y: 0.000009536743, z: 0}
 --- !u!114 &1454164005845135487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4925,6 +4925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2ca32fb0cdc4a4290aec857e533e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thiscollider: {fileID: 0}
 --- !u!114 &1931859856376868373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4937,4 +4938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9428ba8520beffa45aec3043c362a7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blastradius: 4.9
+  mcamera: {fileID: 0}
+  Player: {fileID: 0}
+  Playerrb: {fileID: 0}
+  blastradius: 6.1
+  blastkb: 16.8

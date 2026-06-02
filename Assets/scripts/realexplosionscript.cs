@@ -22,7 +22,7 @@ public class realexplosionscript : MonoBehaviour
     {
         if (!gameObject.CompareTag("BackfireExplosion"))
         {
-            other.attachedRigidbody.AddExplosionForce(blastkb, transform.position, blastradius, 1.1f, ForceMode.VelocityChange);
+            other.attachedRigidbody.AddExplosionForce(blastkb, transform.position, blastradius, 1.7f, ForceMode.VelocityChange);
             if (other.gameObject.CompareTag("Enemy"))
             {
 

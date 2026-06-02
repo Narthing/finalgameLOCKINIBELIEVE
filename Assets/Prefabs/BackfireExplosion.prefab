@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2016247535588984731}
   m_Layer: 0
   m_Name: BackfireExplosion
-  m_TagString: NormalExplosion
+  m_TagString: BackfireExplosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4911,8 +4911,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4.8366566
-  m_Center: {x: 0.00046348572, y: 0.000009536743, z: 0}
+  m_Radius: 6.084029
+  m_Center: {x: 0.0011205673, y: 0.000009536743, z: 0}
 --- !u!114 &5142866410103381263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4941,5 +4941,5 @@ MonoBehaviour:
   mcamera: {fileID: 0}
   Player: {fileID: 0}
   Playerrb: {fileID: 0}
-  blastradius: 4.9
-  blastkb: 16.8
+  blastradius: 6.1
+  blastkb: 20
