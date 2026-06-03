@@ -9,17 +9,17 @@ public class WaitThenDelete : MonoBehaviour
     
     private void Awake()
     {
-        if (gameObject.CompareTag("NormalExplosion")) //if its an explosion then get its collider
-        {thiscollider = gameObject.GetComponent<Collider>();}
+        if (gameObject.CompareTag("NormalExplosion") || gameObject.CompareTag("BackfireExplosion")) //if its an explosion then get its collider
+        { thiscollider = gameObject.GetComponent<Collider>();}
 
         StartCoroutine(waitthendelete());
 
-        if (gameObject.CompareTag("NormalExplosion")) //if its an explosion then have its collider only run for a small moment
+        if (gameObject.CompareTag("NormalExplosion") || gameObject.CompareTag("BackfireExplosion")) //if its an explosion then have its collider only run for a small moment
         {StartCoroutine(collideroneframe());}
     }
     IEnumerator waitthendelete()
     {
-        if (gameObject.CompareTag("NormalExplosion"))
+        if (gameObject.CompareTag("NormalExplosion") || gameObject.CompareTag("BackfireExplosion"))
         {
             yield return new WaitForSeconds(1f);
         }

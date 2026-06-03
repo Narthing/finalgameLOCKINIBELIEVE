@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class realexplosionscript : MonoBehaviour
 {
-    public GameObject mcamera;
-    public GameObject Player;
-    public Rigidbody Playerrb;
+    [SerializeField] private GameObject mcamera;
+    [SerializeField] private GameObject Player;
+    [SerializeField] private Rigidbody Playerrb;
 
     public float blastradius = 4.9f;
     public float blastkb = 16.8f;
 
     private void Awake()
     {
-        mcamera = GameObject.Find("Main Camera");
-        Player = GameObject.Find("Player");
+        mcamera = GameObject.FindWithTag("MainCamera"); 
+        Player = GameObject.FindWithTag("MainPlayer");
         Playerrb = Player.GetComponent<Rigidbody>();
     }
 

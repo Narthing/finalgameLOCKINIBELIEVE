@@ -86,16 +86,15 @@ public class shooting : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R)) //reset scene
         {
-            Scene currentscenescene = SceneManager.GetActiveScene();
-            string currentscene = currentscenescene.ToString();
+            Scene currentScene = SceneManager.GetActiveScene();
+            string currentscene = currentScene.name;
             SceneManager.LoadScene(currentscene);
         }
     }
 
     void Backfire()
     {
-
-        Instantiate(BackfirePrefab, new Vector3(BackfirePoint.position.x, BackfirePoint.position.y, BackfirePoint.position.z), Quaternion.identity);
+        Instantiate(BackfirePrefab, new Vector3(BackfirePoint.position.x, BackfirePoint.position.y, BackfirePoint.position.z), Quaternion.identity, parent: BackfirePoint);
     }
     void Fire(bool homing, bool magdumping) //helper method for instantiating missiles
     {

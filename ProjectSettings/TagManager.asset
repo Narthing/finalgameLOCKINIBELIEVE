@@ -11,6 +11,7 @@ TagManager:
   - RpgParticle
   - Goldparticle
   - BackfireExplosion
+  - MainPlayer
   layers:
   - Default
   - TransparentFX

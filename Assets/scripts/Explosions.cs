@@ -26,7 +26,7 @@ public class Explosions : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-        if (!collision.gameObject.CompareTag("Missile") && !collision.gameObject.CompareTag("Homing") && !collision.gameObject.CompareTag("Player"))
+        if (!collision.gameObject.CompareTag("Missile") && !collision.gameObject.CompareTag("Homing") && !collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("MainPlayer"))
         {
             if (!ishoming)
             {
