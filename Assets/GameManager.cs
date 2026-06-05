@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] public GameObject gmcamera;
+    [SerializeField] public GameObject gmplayer;
+    [SerializeField] public Rigidbody gmplayerrb;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

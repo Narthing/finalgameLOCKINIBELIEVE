@@ -94,7 +94,7 @@ public class shooting : MonoBehaviour
 
     void Backfire()
     {
-        Instantiate(BackfirePrefab, new Vector3(BackfirePoint.position.x, BackfirePoint.position.y, BackfirePoint.position.z), Quaternion.identity, parent: BackfirePoint);
+        Instantiate(BackfirePrefab, new Vector3(BackfirePoint.position.x, BackfirePoint.position.y, BackfirePoint.position.z), Quaternion.identity);
     }
     void Fire(bool homing, bool magdumping) //helper method for instantiating missiles
     {

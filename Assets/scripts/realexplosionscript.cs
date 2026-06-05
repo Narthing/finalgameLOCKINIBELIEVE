@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class realexplosionscript : MonoBehaviour
 {
-    [SerializeField] private GameObject mcamera;
-    [SerializeField] private GameObject Player;
-    [SerializeField] private Rigidbody Playerrb;
+    public GameManager gameManager;
+
+    public GameObject mcamera;
+    public GameObject Player;
+    public Rigidbody Playerrb;
 
     public float blastradius = 4.9f;
     public float blastkb = 16.8f;
 
     private void Awake()
     {
-        mcamera = GameObject.FindWithTag("MainCamera"); 
-        Player = GameObject.FindWithTag("MainPlayer");
-        Playerrb = Player.GetComponent<Rigidbody>();
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+
+        mcamera = gameManager.gmcamera;
+        Player = gameManager.gmplayer;
+        Playerrb = gameManager.gmplayerrb;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log("trigger entered");
+
         if (!gameObject.CompareTag("BackfireExplosion"))
         {
             other.attachedRigidbody.AddExplosionForce(blastkb, transform.position, blastradius, 1.7f, ForceMode.VelocityChange);
@@ -30,21 +36,37 @@ public class realexplosionscript : MonoBehaviour
         }
         else if (gameObject.CompareTag("BackfireExplosion"))
         {
-            Quaternion rot = mcamera.transform.rotation;
-            Vector3 velocity = Playerrb.velocity;
 
-            velocity -= Playerrb.transform.right * Vector3.Dot(velocity, Playerrb.transform.right);
-
-            velocity -= -Playerrb.transform.forward * Vector3.Dot(velocity, -Playerrb.transform.forward);
-
-            velocity += mcamera.transform.forward * 30;
-
-            Playerrb.velocity = velocity;
-
-            other.attachedRigidbody.AddExplosionForce(blastkb, transform.position, blastradius, 0f, ForceMode.VelocityChange);
-            if (other.gameObject.CompareTag("Enemy"))
+            if (other.gameObject.CompareTag("MainPlayer"))
             {
+                
 
+                Quaternion rot = mcamera.transform.rotation;
+                Vector3 velocity = Playerrb.velocity;
+
+                velocity -= Playerrb.transform.right * Vector3.Dot(velocity, Playerrb.transform.right);
+
+                velocity -= -Playerrb.transform.forward * Vector3.Dot(velocity, -Playerrb.transform.forward);
+
+                velocity += mcamera.transform.forward * 30;
+
+                Playerrb.velocity = velocity;
+
+
+
+
+                Playerrb.AddExplosionForce(blastkb, transform.position, blastradius, 0f, ForceMode.VelocityChange);
+
+                //Debug.Log("Player hit");
+
+                if (other.gameObject.CompareTag("Enemy"))
+                {
+
+                }
+            }
+            else
+            {
+                //Debug.Log("player not hit");
             }
         }
     }
