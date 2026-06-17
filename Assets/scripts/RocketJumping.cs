@@ -23,7 +23,7 @@ public class RocketJumping : MonoBehaviour
         // Lock the cursor in the center and hide it
         Cursor.lockState = CursorLockMode.Locked;
 
-        Physics.gravity = new Vector3(0, -19f, 0);
+        Physics.gravity = new Vector3(0, -24f, 0);
     }
 
     void Update()
@@ -36,13 +36,13 @@ public class RocketJumping : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); // Prevent flipping
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
         // horizontally
-
         yRotation += mouseX;
 
-        playerBody.rotation = Quaternion.Euler(0f, yRotation, 0f);
+        //apply it
+        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+
+        
 
         //rotate rocket launcher
         Vector3 rocketstuff = new Vector3(maincamera.eulerAngles.x - 90, maincamera.eulerAngles.y, 0f);

@@ -48,7 +48,7 @@ public class realexplosionscript : MonoBehaviour
 
                 velocity -= -Playerrb.transform.forward * Vector3.Dot(velocity, -Playerrb.transform.forward);
 
-                velocity += mcamera.transform.forward * 30;
+                velocity += mcamera.transform.forward * 80;
 
                 Playerrb.velocity = velocity;
 

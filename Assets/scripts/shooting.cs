@@ -45,7 +45,7 @@ public class shooting : MonoBehaviour
     {
 
 
-        pointrot = new Vector3(maincamera.eulerAngles.x, Player.eulerAngles.y, 0f);
+        pointrot = new Vector3(maincamera.eulerAngles.x, maincamera.eulerAngles.y, 0f);
         shootpoint.rotation = Quaternion.Euler(pointrot);
 
         if (Input.GetMouseButtonDown(0) && !currentlyhoming && !MagDumping)
