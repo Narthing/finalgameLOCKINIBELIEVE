@@ -2094,7 +2094,7 @@ GameObject:
   - component: {fileID: 158006039}
   - component: {fileID: 158006038}
   m_Layer: 5
-  m_Name: frame (2)
+  m_Name: Backfire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2116,8 +2116,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 738.2564, y: -663.67206}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 737.5068, y: -665.541}
+  m_SizeDelta: {x: 92.3421, y: 94.7264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &158006038
 MonoBehaviour:
@@ -13785,7 +13785,7 @@ GameObject:
   - component: {fileID: 540302348}
   - component: {fileID: 540302347}
   m_Layer: 5
-  m_Name: backfirelogo
+  m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13830,7 +13830,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: ef0d7d1ce773d1d42867ac1963e42aa1, type: 3}
+  m_Texture: {fileID: 2800000, guid: d14e83abd024ad24ab5573db67030e19, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -17416,7 +17416,7 @@ GameObject:
   - component: {fileID: 849141540}
   - component: {fileID: 849141539}
   m_Layer: 5
-  m_Name: frame (2)
+  m_Name: Gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17438,8 +17438,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 906.2564, y: -663.67206}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 904.8477, y: -663.6977}
+  m_SizeDelta: {x: 89.3067, y: 96.0691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &849141539
 MonoBehaviour:
@@ -18460,13 +18460,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918855620}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.40256396, w: 0.91539186}
   m_LocalPosition: {x: 0, y: 0, z: 1014.77405}
-  m_LocalScale: {x: 1.2983083, y: 1.2983083, z: 1.2983083}
+  m_LocalScale: {x: 1.6104215, y: 1.6104215, z: 1.6104215}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2080698012}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -47.477}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 621.99994, y: -618.5}
@@ -35783,7 +35783,7 @@ GameObject:
   - component: {fileID: 1574650053}
   - component: {fileID: 1574650052}
   m_Layer: 5
-  m_Name: backfirelogo
+  m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35828,7 +35828,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: ef0d7d1ce773d1d42867ac1963e42aa1, type: 3}
+  m_Texture: {fileID: 2800000, guid: d14e83abd024ad24ab5573db67030e19, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -38520,7 +38520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: ef0d7d1ce773d1d42867ac1963e42aa1, type: 3}
+  m_Texture: {fileID: 2800000, guid: d14e83abd024ad24ab5573db67030e19, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
